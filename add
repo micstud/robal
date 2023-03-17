@@ -1,0 +1,51 @@
+def spr(haslo):
+	#ec - kod błędu
+	ec = 0
+	if len(haslo) > 50:
+		ec = 1
+	elif len(haslo) < 10:
+		ec = 2
+	else:
+		print(haslo)
+		for _ in haslo:
+			if _.isdigit():
+				ec = 3
+				break
+	
+	if ec == 1:
+			print("Hasło zbyt długie! Maksymalna długość hasła to 50 znaków.")
+	elif ec == 2:
+			print("Hasło zbyt krótkie! Minimalna długość hasła to 10 znaków.")
+	elif ec == 3:
+			print("Hasło nie może zawierać cyfr!")
+			
+	return ec
+			
+				
+def dodaj(haslo):				
+	file = open("hasla.txt", "a")
+	file.write(haslo + "\n")
+
+def wyswietl():
+	file = open("hasla.txt")
+	for line in file:
+		print(line.strip())
+		
+			
+w = -1
+
+while w != "0":
+	
+	print("Wprowadź nowe hasło lub wpisz:")
+	print("0 aby wyjść")
+	print("1 aby wyświetlić listę haseł")
+	
+	w = input()
+	
+	if w == "1":
+		wyswietl()
+		
+	elif w!= "0" and w != "1":
+		ec = spr(w)
+		if ec == 0:
+			dodaj(w)
